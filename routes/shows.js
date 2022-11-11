@@ -22,6 +22,10 @@ showRouter.get("/genres/:input", async (req, res) => {
 showRouter.put("/:showInput/watched",
 body("rating").isLength({min: 1}), 
 async (req, res) => {
+    const errors  = validationResult(req)
+    if (!errors.isEmpty()){
+        return res.status(400).send({errors:errors.array()})
+    }
     const toBeUpdated = await Show.findByPk(req.params.showInput)
     await toBeUpdated.update({rating: req.body.rating})
     res.send("rating has been updated")
