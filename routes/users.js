@@ -18,8 +18,10 @@ userRouter.get("/:inputId/shows", async (req, res) => {
 });
 //PUT update and add a show if a user has watched it
 ///users/2/shows/9
-userRouter.put("/users", (req, res) => {
-
+userRouter.put("/:userIdInput/shows/:showIdInput", async (req, res) => {
+   const user =  await User.findByPk(req.params.userIdInput)
+   user.addShows(req.params.showIdInput)
+    res.send("show has been added to user")
 });
 //export router for use in other files
 module.exports = userRouter;

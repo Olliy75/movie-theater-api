@@ -18,14 +18,23 @@ showRouter.get("/:input", async (req, res) => {
 });
 //PUT update rating of a show that has been watched
 ///shows/4/watched
-showRouter.put("/", async(req, res) => {
-    // await Show.addUser
-    // res.send(await )
+showRouter.put("/:showInput/watched", async (req, res) => {
+    const toBeUpdated = await Show.findByPk(req.params.showInput)
+    toBeUpdated.rating = req.body
+    res.send("rating has been updated")
 });
 //PUT update the status of a show
 ///shows/3/updates
-showRouter.put("/shows", async (req, res) => {
-    // res.send(await )
+showRouter.put("/:showInput/updates", async (req, res) => {
+    const showToUpdate = await Show.findByPk(req.params.showInput)
+    if (showToUpdate.status === "canceled"){
+        showToUpdate.status = "on-going"
+    }
+    else
+    {
+        showToUpdate.status = "canceled"
+    }
+    res.send("status updated")
 });
 //DELETE a show
 showRouter.delete("/shows", (req, res) => {
