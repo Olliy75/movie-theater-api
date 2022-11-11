@@ -40,7 +40,7 @@ async (req, res) => {
     }
     else
     {
-        showToUpdate.status = "cancelled"
+        showToUpdate.update({status: "cancelled"})
     }
     res.send("status updated")
 });
