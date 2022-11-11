@@ -48,6 +48,7 @@ async (req, res) => {
 showRouter.delete("/:input", async (req, res) => {
     const showToDestroy = await Show.findByPk(req.params.input)
     showToDestroy.destroy()
+    res.send("delete has been successfull")
 });
 //export router for use in other files
 module.exports = showRouter;
