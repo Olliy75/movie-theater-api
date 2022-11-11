@@ -35,12 +35,12 @@ async (req, res) => {
 showRouter.put("/:showInput/updates",
 async (req, res) => {
     const showToUpdate = await Show.findByPk(req.params.showInput)
-    if (showToUpdate.status === "canceled"){
+    if (showToUpdate.status === "cancelled"){
         showToUpdate.status = "on-going"
     }
     else
     {
-        showToUpdate.status = "canceled"
+        showToUpdate.status = "cancelled"
     }
     res.send("status updated")
 });
